@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>homework8</title>
+    <body>
+        <script>
+            // map
+            const someArrayMap = [1, 2, 3];
+
+            function isMap(arr, callback) {
+                const newArray = [];
+
+                for (let i = 0; i < arr.length; i++) {
+                    newArray.push(callback(arr[i], i, arr))
+                }
+
+            return newArray;
+            }
+
+            const mapArray = isMap(someArrayMap, function newArray(currentValue, index, array) {
+                return currentValue ** 2;
+            })
+
+            console.log("Map method: ", mapArray);
+
+            // filter
+            const someArrayFilter = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+
+            function isFilter(arr, callback) {
+                const newArray = [];
+
+                for (let i = 0; i < arr.length; i++) {
+                    if (callback(arr[i], i, arr)) {
+                        newArray.push(arr[i])
+                    }
+                }
+                return newArray;
+            }
+
+            const filterArray = isFilter(someArrayFilter, function newArray(item, index, array) {
+                return item.length > 6;
+            })
+
+            console.log("Filter method: ", filterArray);
+
+            // Notificaation task
+
+            const notification = [
+                {
+                    date: '31/07/2019',
+                    msg: 'Some message here'
+                },
+                {
+                    date: '30/07/2019',
+                    msg: 'Some message here'
+                },
+                {
+                    date: '29/07/2019',
+                    msg: 'Some message here'
+                },
+                {
+                    date: '29/07/2019',
+                    msg: 'Some message here'
+                },
+            ]
+
+            const res = notification.reduce(function (accum, elem, index, arr) {
+                const date = elem.date;
+                const message = elem.msg;
+
+                if (!accum[date]) {
+                    accum[date] = [];
+                }
+
+                accum[date].push(message);
+
+                return accum;
+            }, {})
+
+            console.log("Notification: ", res);
+        </script>
+    </body>
+</head>
